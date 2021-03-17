@@ -12,3 +12,4 @@
 <p>Any suggestions in regards to the code, the idea or to how im managing the github page will be greatly appreciated. I dont know very well how github works yet but any questions or requests can be asked to juangarcialopez8974@gmail.com</p>
 <p>Im more than happy to collaborate with people if they want to:)</p>
 <p>Thank you in advance</p>
+<p>Juan Garcia Lopez</p>
