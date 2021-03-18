@@ -22,7 +22,7 @@
 r:==(x,y,z)=(5,2,-3)+&lambda;(7,0,0)<br>
 &pi;:==2x-y+z+11=0<br></p>
 <p>First I create the line and the Plane</p>
-<img src="Images/CreateLine.png">
+<img src="images/Createline.png">
 
 
 <h1>Extra Information</h1>
