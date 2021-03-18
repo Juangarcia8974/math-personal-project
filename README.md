@@ -22,7 +22,12 @@
 r:==(x,y,z)=(5,2,-3)+&lambda;(7,0,0)<br>
 &pi;:==2x-y+z+11=0<br></p>
 <p>First I create the line and the Plane</p>
-<img src="images/Createline.png">
+<img src="images/Createline.png" width="500">
+<p>Then I create the plane</p>
+<img src="images/Createplane.png" width="600">
+<p>Then I go to the compare menu, choose the option of comparing a line and a plane and select the ones I just created.</p>
+<img src="images/Comparelineandplane.png" width="1000">
+<p>And as easy as the we know that the plane and line intersect at the point (-3,2,3)</p>
 
 
 <h1>Extra Information</h1>
