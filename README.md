@@ -22,7 +22,6 @@
 r:==(x,y,z)=(5,2,-3)+&lambda;(7,0,0)<br>
 &pi;:==2x-y+z+11=0<br></p>
 <p>First I create the line and the Plane</p>
-![Image of Creating line](https://user-images.githubusercontent.com/58486504/111629403-8ac58280-87f1-11eb-964f-c7c7081ac8ef.png)
 
 
 
