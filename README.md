@@ -24,7 +24,6 @@ r:==(x,y,z)=(5,2,-3)+&lambda;(7,0,0)<br>
 <p>First I create the line and the Plane</p>
 
 
-
 <h1>Extra Information</h1>
 <p>Every example problem has been taken randomly from a math book</p>
 <p>Any suggestions in regards to the code, the idea or to how im managing the github page will be greatly appreciated. I dont know very well how github works yet but any questions or requests can be asked to juangarcialopez8974@gmail.com</p>
