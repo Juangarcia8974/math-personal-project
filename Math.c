@@ -4,11 +4,7 @@
 
 //THINGS NOT DONE
 //1:[MAYBE GOOD MAYBE BAD] Currently, the function CreatePlane();requires the user to know a point and I think the more suitable thing is to ask for the value of d. [MAYBE GOOD MAYBE BAD]
-//2:Come up with more ideas for the function ShowGeometryFindPointMenu();
-//3:Come up with more ideas for the function ShowGeometryFindLineMenu();
-//4:Finish the function ShowGeometryFindPlaneMenu();and implement all the options.
-
-
+//2:Substitute the newly created CalculateDeterminant(); and VectorialProduct(); functions in the places that have been used in the GEOMETRY section.
 
 
 void ShowMenu();
@@ -21,6 +17,7 @@ void ShowGeometryFindMenu();
 void ShowGeometryFindPointMenu();
 void ShowGeometryFindLineMenu();
 void ShowGeometryFindPlaneMenu();
+
 void CreatePoint(float* num_coor, float* coor1, float* coor2, float* coor3);
 void ShowPoints(int n, float x, float y, float z);
 void CompareTwoPoints(float x1, float y1, float z1, float x2, float y2, float z2);
@@ -40,6 +37,7 @@ void FindLineFromTwoPoints(float x1, float y1, float z1, float x2, float y2, flo
 void FindLineParallelToLineandPassesbyPoint(float x, float y, float z, float xp, float yp, float zp, float xv, float yv, float zv);
 void FindLinePerpendicularToTwoLinesAndPassesByIntersectionPoint(float xp1, float yp1, float zp1, float xv1, float yv1, float zv1,float xp2, float yp2, float zp2, float xv2, float yv2, float zv2);
 void FindLinePerpendicularToTwoLinesAndPassesBySomePoint(float x, float y, float z, float xp1, float yp1, float zp1, float xv1, float yv1, float zv1,float xp2, float yp2, float zp2, float xv2, float yv2, float zv2);
+void FindLinePerpendicularToPlaneAndPassesByPoint(float x, float y, float z, float xn, float yn, float zn, float d);
 void CreatePlane(float* xv, float* yv, float* zv, float* d);
 void ShowPlanes(int n, float xn, float ny, float nz, float d);
 void PrintPlane(float xn, float yn, float zn, float d);
@@ -47,8 +45,11 @@ void CompareTwoPlanes(float xn1, float yn1, float zn1, float d1, float xn2, floa
 void FindPlaneThatContainsTwoLines(float xp1, float yp1, float zp1, float xv1, float yv1, float zv1, float xp2, float yp2, float zp2, float xv2, float yv2, float zv2);
 void FindPlaneParalleltoAnotherPlaneandContainsPoint(float xp, float yp, float zp, float xn, float yn, float zn, float d1);
 void FindPlaneContainingThreePoints(float x1, float y1, float z1, float x2, float y2, float z2, float x3, float y3, float z3);
+void FindPlaneContainingPointAndLine(float x, float y, float z, float xp, float yp, float zp, float xv1, float yv1, float zv1);
 
-
+float CalculateDeterminant2(float x1, float y1, float x2, float y2);
+float CalculateDeterminant3(float x1, float y1, float z1, float x2, float y2, float z2, float x3, float y3, float z3);
+void CalculateVectorialProduct(float* i, float* j, float* k, float x1, float y1, float z1, float x2, float y2, float z2);
 
 
 
@@ -322,6 +323,19 @@ int main(){
 														FindLinePerpendicularToTwoLinesAndPassesBySomePoint(Points[s1][2], Points[s1][3], Points[s1][4], Lines[s2][1], Lines[s2][2], Lines[s2][3], Lines[s2][4], Lines[s2][5], Lines[s2][6], Lines[s3][1], Lines[s3][2], Lines[s3][3], Lines[s3][4], Lines[s3][5], Lines[s3][6]);
 													}
 													break;
+												case 5: if(np<1){//Find line perpendicular to plane and that contains one point.
+														printf("\nERROR:You dont have enough points created to use this function.");
+													}
+													else if(npl<1){
+														printf("\nERROR:You dont have enough planes created to use this function.");
+													}
+													else{
+														printf("\nEnter the number related to the point you want to use to find the line.\nPOINTS:\n");
+														for(n=1;n<np;n++){ShowPoints(n, Points[n][2], Points[n][3], Points[n][4]);}
+														scanf("%d",&s1);
+														printf("\nEnter the number related to the plane you want to use to find the line.");
+													}
+													break;
 											}
 										}while(o4!=0);
 										break;
@@ -364,6 +378,23 @@ int main(){
 														scanf("%d,%d,%d", &s1, &s2, &s3);
 														FindPlaneContainingThreePoints(Points[s1][2], Points[s1][3], Points[s1][4], Points[s2][2], Points[s2][3], Points[s2][4], Points[s3][2], Points[s3][3], Points[s3][4]);
 													}
+													break;
+												case 4: if(np<1){//Find a plane that contains a point and a line.
+														printf("\nERROR:You dont have enough points created to use this function.");
+													}
+													else if(nl<1){
+														printf("\nERROR:You dont have enough lines created to use this function.");
+													}
+													else{
+														printf("\nEnter the number related to the point you want to use to find the plane.\nPOINTS:\n");
+														for(n=1;n<np;n++){ShowPoints(n, Points[n][2], Points[n][3], Points[n][4]);}
+														scanf("%d",&s1);
+														printf("\nNow enter the number related to the line you want to use to find the plane.\nLINES:\n");
+														for(n=1;n<nl;n++){ShowLines(n, Lines[n][1], Lines[n][2], Lines[n][3], Lines[n][4], Lines[n][5], Lines[n][6]);}
+														scanf("%d",&s2);
+														FindPlaneContainingPointAndLine(Points[s1][2], Points[s1][3], Points[s1][4], Lines[s2][1], Lines[s2][2], Lines[s2][3], Lines[s2][4], Lines[s2][5], Lines[s2][6]);
+													}
+													break;
 											}
 										}while(o4!=0);
 										break;
@@ -485,6 +516,7 @@ void ShowGeometryFindLineMenu(){
 	printf("\nTo find the line parallel to another one that passes by one point press 2");
 	printf("\nTo find a line prependicular to another two lines and that passes by the intersection point press 3");
 	printf("\nTo find a line perpendicular to another two lines and that passes by one certain point press 4");
+	printf("\nTo find a line perpendicular to a plane and passes by one point press 5");
 
 	printf("\nTo return to Geometry Finding Menu press 0\n");
 }
@@ -493,6 +525,7 @@ void ShowGeometryFindPlaneMenu(){
 	printf("\nTo find plane that contains two lines press 1");
 	printf("\nTo find the plane that is parallel to another plane and that contains a certain point press 2");
 	printf("\nTo find the plane that contains three points press 3");
+	printf("\nTo find the plane that contains a point and a line press 4");
 		
 	printf("\nTo return to Geometry Finding Menu press 0\n");	
 }
@@ -822,6 +855,9 @@ void CompareTwoLines(float xp1, float yp1, float zp1, float xv1, float yv1, floa
 	float j;
 	float k;
 	float dist;
+	xv=xp2-xp1;
+	yv=yp2-yp1;
+	zv=zp2-zp1;
 	//I will first compare the two vectors
 	if((xv1/xv2==yv1/yv2)&&(yv1/yv2==zv1/zv2)){//The vectors are parallel to each other. This means the lines can either be parallel or the same line with different equations.
 		//To know if its the same line or not, im just going to substitute the point of the first line in the equation of the second line.
@@ -829,16 +865,11 @@ void CompareTwoLines(float xp1, float yp1, float zp1, float xv1, float yv1, floa
 			printf("\nThey are the same line expressed with a different equation");
 		}
 		else{
-			xv=xp2-xp1;
-			yv=yp2-yp1;
-			zv=zp2-zp1;
 			//I create a matrix 
 			//| i | j | k |
 			//| xv| yv| zv|
 			//|xv1|yv1|zv1|
-			i=yv*zv1-yv1*zv;
-			j=xv1*zv-xv*zv1;
-			k=xv*yv1-xv1*yv;
+			CalculateVectorialProduct(&i, &j, &k, xv, yv, zv, xv1, yv1, zv1);
 			detdist=sqrtf(xv1*xv1+yv1*yv1+zv1*zv1);
 			dist=(sqrtf(i*i+j*j+k*k))/detdist;
 			printf("\nThe two lines are parallel to each other with a distance of %f",dist);
@@ -850,7 +881,7 @@ void CompareTwoLines(float xp1, float yp1, float zp1, float xv1, float yv1, floa
 		// | yv1 | yv2 | (yp2-yp1) |
 		// | zv1 | zv2 | (zp2-zp1) |
 		//If the determinant of this matrix is equal to 0, they intersect each other. If not, they cross each other.
-		det=xv1*yv2*(zp2-zp1)+yv1*zv2*(xp2-xp1)+zv1*xv2*(yp2-yp1)-zv1*yv2*(xp2-xp1)-xv1*zv2*(yp2-yp1)-yv1*xv2*(zp2-zp1);
+		det=CalculateDeterminant3(xv1, xv2, xv, yv1, yv2, yv, zv1, zv2, zv);
 		if(det==0){//They intersect
 			//If the two lines are
 			//(xp1+xv1*(s),yp1+yv1*(s),zp1+zv1*(s)=(xp2+xv2*t,yp2+yv2*t,zp2+zv2*t)
@@ -883,15 +914,13 @@ void CompareTwoLines(float xp1, float yp1, float zp1, float xv1, float yv1, floa
 			//| xv1 | yv1 | zv1 |
 			//| xv2 | yv2 | zv2 |
 			//I calculate de determinant of this matrix
-			detdist=(xv*yv1*zv2)+(xv1*yv2*zv)+(xv2*zv1*yv)-(xv2*yv1*zv)-(xv*yv2*zv1)-(xv1*yv*zv2);
+			detdist=CalculateDeterminant3(xv, yv, zv, xv1, yv1, zv1, zv2, yv2, zv2);
 			//I create another matrix 
 			//|  i  |  j  |  k  |
 			//| xv1 | yv1 | zv1 |
 			//| xv2 | yv2 | zv2 |
 			//This means that
-			i=yv1*zv2-zv1*yv2;
-			j=xv2*zv1-xv1*zv2;
-			k=xv1*yv2-xv2*yv1;
+			CalculateVectorialProduct(&i, &j, &k, xv1, yv1, zv1, xv2, yv2, zv2);
 			dist=detdist/(sqrtf(i*i+j*j+k*k));
 			printf("\nThe two lines cross each other but dont intersect and they are separated at a distance of %f",dist);
 		}
@@ -978,9 +1007,7 @@ void FindLinePerpendicularToTwoLinesAndPassesByIntersectionPoint(float xp1, floa
 		//| xv1 | yv1 | zv1 |
 		//| xv2 | yv2 | zv2 |
 		//I calculate the determinant of this matrix
-		xv=yv1*zv2-yv2*zv1;
-		yv=xv2*zv1-zv2*xv1;
-		zv=xv1*yv2-xv2*yv1;
+		CalculateVectorialProduct(&xv, &yv, &zv, xv1, yv1, zv1, xv2, yv2, zv2);
 		//I calculate the intersection point the same way I do in CompareTwoLines();
 		t=(xv1*(yp2-yp1)-yv1*(xp2-xp1))/(yv1*xv2-xv1*yv2);
 		s=(zp2-zp1+zv2*t)/zv1;
@@ -1017,6 +1044,12 @@ void FindLinePerpendicularToTwoLinesAndPassesBySomePoint(float x, float y, float
 		printf("\nThe line that is perpendicular to (x,y,z)=(%f,%f,%f)+(alpha)*(%f,%f,%f) and (x,y,z)=(%f,%f,%f)+(alpha)*(%f,%f,%f) and passes through the point(%f,%f,%f) is.....\n", xp1, yp1, zp1, xv1, yv1, zv1, xp2, yp2, zp2, xv2, yv2, zv2, x, y, z);
 		printf("(x,y,z)=(%f,%f,%f)+alpha*(%f,%f,%f)", x, y, z, xv, yv, zv);
 	}
+}
+			//Find a line perpenducular to a plane and that passes by a point.
+void FindLinePerpendicularToPlaneAndPassesByPoint(float x, float y, float z, float xn, float yn, float zn, float d){
+	//The vector of the line is going to be the same as the normal vector of the plane.
+	//That means that we basically have the line of the equation already:
+	printf("\nThe line that is perpendicular to the plane ");PrintPlane(xn, yn, zn, d);printf(" and passes by the point (%f,%f,%f) is (x,y,z)=(%f,%f,%f)+(alpha)*(%f,%f,%f)", x, y, z, x, y, z, xn, yn, zn);
 }
 
 		
@@ -1214,16 +1247,76 @@ void FindPlaneContainingThreePoints(float x1, float y1, float z1, float x2, floa
 		//| i | j | k |
 		//|xv1|yv1|zv1|
 		//|xv2|yv2|zv2|
-		//This means that:
-		xn=yv1*zv2-yv2*zv1;
-		yn=xv2*zv1-xv1*zv2;
-		zn=xv1*yv2-xv2*yv1;
+		CalculateVectorialProduct(&xn, &yn, &zn, xv1, yv1, zv1, xv2, yv2, zv2);
 		//I use one of the points to figure out the value of d.
 		//xn*xp+yn*yp+zn*zp+d=0
 		//This means that
 		d=-(xn*x1+yn*y1+zn*z1);
 		printf("\nThe plane that contains the points(%f,%f,%f),(%f,%f,%f) and (%f,%f,%f) is the plane ", x1, y1, z1, x2, y2, z2, x3, y3, z3);PrintPlane(xn, yn, zn, d);
 	}
+}
+			//Find Plane that contains a point and a line.
+void FindPlaneContainingPointAndLine(float x, float y, float z, float xp, float yp, float zp, float xv1, float yv1, float zv1){
+	float s;
+	float xv2;
+	float yv2;
+	float zv2;
+	float xn;
+	float yn;
+	float zn;
+	float d;
+	//As in the function ComparePointandLine();
+	s=(x-xp)/xv1;
+	if((s==(y-yp)/yv1)&&(s==(z-zp)/zv1)){//Point is part of the line
+		printf("\nERROR:The point (%f,%f,%f) is part of the line (x,y,z)=(%f,%f,%f)+(alpha)*(%f,%f,%f). This means that its impossible to figure a plane with only this information", x, y, z, xp, yp, zp, xv1, yv1, zv1);		
+	}
+	else{//It can be done
+		//I create a vector with a point of the line and the other point.
+		xv2=x-xp;
+		yv2=y-yp;
+		zv2=z-zp;
+		//I make a matrix to do the vectorial product and get a vector perpendicular to the two we have till now. This will be the normal vector of the plane.
+		//| i | j | k |
+		//|xv1|yv1|zv1|
+		//|xv2|yv2|zv2|
+		CalculateVectorialProduct(&xn, &yn, &zn, xv1, yv1, zv1, xv2, yv2, zv2);
+		d=-(xn*x+yn*y+zn*z);
+		printf("\nPlane: ");PrintPlane(xn, yn, zn, d);
+
+	}
+}
+
+
+
+
+
+	//ALGEBRA
+		//DETERMINANTS
+			//Calculate the 2 x 2 determinant.
+float CalculateDeterminant2(float x1, float y1, float x2, float y2){//If n==0 return det; if n==1 return 0;
+	float det;
+	//|x1|y1|
+	//|x2|y2|
+	det=x1*y2-x2*y1;
+	return det;
+}
+			//Calculate the 3 x 3 determinant.
+float CalculateDeterminant3(float x1, float y1, float z1, float x2, float y2, float z2, float x3, float y3, float z3){
+	float det;
+	//|x1|y1|z1|
+	//|x2|y2|z2|
+	//|x3|y3|z3|
+	det=x1*y2*z3+x2*y3*z1+x3*y1*z2-x1*y3*z2-x2*y1*z3-x3*y2*z1; 
+	return det;
+}
+			//VectorialProduct
+void CalculateVectorialProduct(float* i, float* j, float* k, float x1, float y1, float z1, float x2, float y2, float z2){
+	//|i |j |k |
+	//|x1|y1|z1|
+	//|x2|y2|z2|
+	*i=y1*z2-y2*z1;
+	*j=x2*z1-x1*z2;
+	*k=x1*y2-x2*y1;
 }
 
 
