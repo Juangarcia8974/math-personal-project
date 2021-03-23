@@ -28,7 +28,10 @@ r:==(x,y,z)=(5,2,-3)+&lambda;(7,0,0)<br>
 <p>Then I go to the compare menu, choose the option of comparing a line and a plane and select the ones I just created.</p>
 <img src="images/Comparelineandplane.png" width="1000">
 <p>And as easy as the we know that the plane and line intersect at the point (-3,2,3)</p>
-
+<h2>Acknowledgments</h2>
+<ol>
+  <li>Axenth: Help in many doubts and ways to improve the code</li>
+</ol>
 
 <h1>Extra Information</h1>
 <p>Every example problem has been taken randomly from a math book</p>
