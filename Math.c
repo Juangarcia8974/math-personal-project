@@ -6,7 +6,7 @@
 
 //THINGS NOT DONE
 //1:[MAYBE GOOD MAYBE BAD] Currently, the function CreatePlane();requires the user to know a point and I think the more suitable thing is to ask for the value of d. [MAYBE GOOD MAYBE BAD]
-//2:Substitute the newly created CalculateDeterminant(); and VectorialProduct(); functions in the places that have been used in the GEOMETRY section.
+//2:Finish the Operating section of Algebra.
 
 
 void ShowMenu();
@@ -19,7 +19,10 @@ void ShowGeometryFindMenu();
 void ShowGeometryFindPointMenu();
 void ShowGeometryFindLineMenu();
 void ShowGeometryFindPlaneMenu();
-
+void ShowAlgebraMenu();
+void ShowAlgebraCreatingMenu();
+void ShowAlgebraCreatingSquareMatrixMenu();
+void ShowAlgebraOperatingMenu();
 
 
 int main(){
@@ -46,7 +49,10 @@ int main(){
 			//This are going to be the same dymension as the points.
 	float Planes[100][4];//100 planes [n][1]=xv; [n][2]=yv; [n][3]=zv; I use the vector perpendicular to the plane. [n][4]=d;
 
-
+	
+	//ALGEBRA
+		//Matrix
+	float Matrix[100][6][6];//100 Matrix [n][r][c]; [n][0][0]=Rows;[n][0][1]=Columns; (Dimension of the matrix).
 
 	int o;//Option 1
 	int o2;//Option 2
@@ -56,6 +62,7 @@ int main(){
 	int nv=1;//Vector number
 	int nl=1;//Line number
 	int npl=1;//Plane number
+	int nm=1;//Matrix number
 	int i;
 	int n;
 	int s1;//SUBJECTS 
@@ -372,8 +379,84 @@ int main(){
 				       }
 							
 			       }while(o2!=0);
+			       	break;
+
+			case 2:do{//ALGEBRA
+				ShowAlgebraMenu();
+				scanf("%d",&o2);
+				switch(o2){
+					case 1:do{//Create Matrix
+				 		ShowAlgebraCreatingMenu();
+			     			scanf("%d",&o3);
+						switch(o3){
+							case 1:do{//Creating Regular Matrix
+								ShowAlgebraCreatingSquareMatrixMenu();
+								scanf("%d",&o4);
+								switch(o4){
+									case 1://Create Square Matrix of dimension 2
+										CreateSquareMatrix2(&Matrix[nm][0][0], &Matrix[nm][0][1], &Matrix[nm][1][1], &Matrix[nm][1][2], &Matrix[nm][2][1], &Matrix[nm][2][2]);nm++;break;
+									case 2://Create Square Matrix of dimension 3
+										CreateSquareMatrix3(&Matrix[nm][0][0], &Matrix[nm][0][1], &Matrix[nm][1][1], &Matrix[nm][1][2], &Matrix[nm][1][3], &Matrix[nm][2][1], &Matrix[nm][2][2], &Matrix[nm][2][3], &Matrix[nm][3][1], &Matrix[nm][3][2], &Matrix[nm][3][3]);nm++;break;
+									case 3://Create Square Matrix of dimension 4
+										CreateSquareMatrix4(&Matrix[nm][0][0], &Matrix[nm][0][1], &Matrix[nm][1][1], &Matrix[nm][1][2], &Matrix[nm][1][3], &Matrix[nm][1][4], &Matrix[nm][2][1], &Matrix[nm][2][2], &Matrix[nm][2][3], &Matrix[nm][2][4], &Matrix[nm][3][1], &Matrix[nm][3][2], &Matrix[nm][3][3], &Matrix[nm][3][4], &Matrix[nm][4][1], &Matrix[nm][4][2], &Matrix[nm][4][3], &Matrix[nm][4][4]);nm++;break;
+									case 4://Create Square Matrix of dimension 5
+									       CreateSquareMatrix5(&Matrix[nm][0][0], &Matrix[nm][0][1], &Matrix[nm][1][1], &Matrix[nm][1][2], &Matrix[nm][1][3], &Matrix[nm][1][4], &Matrix[nm][1][5], &Matrix[nm][2][1], &Matrix[nm][2][2], &Matrix[nm][2][3], &Matrix[nm][2][4], &Matrix[nm][2][5], &Matrix[nm][3][1], &Matrix[nm][3][2], &Matrix[nm][3][3], &Matrix[nm][3][4], &Matrix[nm][3][5], &Matrix[nm][4][1], &Matrix[nm][4][2], &Matrix[nm][4][3], &Matrix[nm][4][4], &Matrix[nm][4][5], &Matrix[nm][5][1], &Matrix[nm][5][2], &Matrix[nm][5][3], &Matrix[nm][5][4], &Matrix[nm][5][5]);nm++;break;
+									case 5://Create Square Matrix of dimension 6
+									       CreateSquareMatrix6(&Matrix[nm][0][0], &Matrix[nm][0][1], &Matrix[nm][1][1], &Matrix[nm][1][2], &Matrix[nm][1][3], &Matrix[nm][1][4], &Matrix[nm][1][5], &Matrix[nm][1][6], &Matrix[nm][2][1], &Matrix[nm][2][2], &Matrix[nm][2][3], &Matrix[nm][2][4], &Matrix[nm][2][5], &Matrix[nm][2][6], &Matrix[nm][3][1], &Matrix[nm][3][2], &Matrix[nm][3][3], &Matrix[nm][3][4], &Matrix[nm][3][5], &Matrix[nm][3][6], &Matrix[nm][4][1], &Matrix[nm][4][2], &Matrix[nm][4][3], &Matrix[nm][4][4], &Matrix[nm][4][5], &Matrix[nm][4][6], &Matrix[nm][5][1], &Matrix[nm][5][2], &Matrix[nm][5][3], &Matrix[nm][5][4], &Matrix[nm][5][5], &Matrix[nm][5][6], &Matrix[nm][6][1], &Matrix[nm][6][2], &Matrix[nm][6][3], &Matrix[nm][6][4], &Matrix[nm][6][5], &Matrix[nm][6][6]);nm++;break;
+								}
+							      }while(o4!=0);
+							      break;
+						}
+					}while(o3!=0);
+				 	break;
+					
+					case 2: do{//Operating
+						ShowAlgebraOperatingMenu();
+						scanf("%d",&o3);
+						switch(o3){
+							case 1://Addition of matrix
+								if(nm<2){
+									printf("\nERROR:You dont have enough matrices created to use this function.");
+								}
+								else{
+									printf("\nEnter the numbers realted to the matrices you want to add separated by a coma.\nMATRICES:\n");
+									for(n=1;n<nm;n++){ShowMatrix(n, Matrix[n][0][0], Matrix[n][0][1], Matrix[n][1][1], Matrix[n][1][2], Matrix[n][1][3], Matrix[n][1][4], Matrix[n][1][5], Matrix[n][1][6], Matrix[n][2][1], Matrix[n][2][2], Matrix[n][2][3], Matrix[n][2][4], Matrix[n][2][5], Matrix[n][2][6], Matrix[n][3][1], Matrix[n][3][2], Matrix[n][3][3], Matrix[n][3][4], Matrix[n][3][5], Matrix[n][3][6], Matrix[n][4][1], Matrix[n][4][2], Matrix[n][4][3], Matrix[n][4][4], Matrix[n][4][5], Matrix[n][4][6], Matrix[n][5][1], Matrix[n][5][2], Matrix[n][5][3], Matrix[n][5][4], Matrix[n][5][5], Matrix[n][5][6], Matrix[n][6][1], Matrix[n][6][2], Matrix[n][6][3], Matrix[n][6][4], Matrix[n][6][5], Matrix[n][6][6]);}
+									scanf("%d,%d", &s1 ,&s2);
+									if(Matrix[s1][0][0]==Matrix[s2][0][0] && Matrix[s1][0][1]==Matrix[s2][0][1]){//The addition can be made
+										AddMatrix(Matrix[s1][0][0], Matrix[s1][0][1], Matrix[s1][1][1], Matrix[s1][1][2], Matrix[s1][1][3], Matrix[s1][1][4], Matrix[s1][1][5], Matrix[s1][1][6], Matrix[s1][2][1], Matrix[s1][2][2], Matrix[s1][2][3], Matrix[s1][2][4], Matrix[s1][2][5], Matrix[s1][2][6], Matrix[s1][3][1], Matrix[s1][3][2], Matrix[s1][3][3], Matrix[s1][3][4], Matrix[s1][3][5], Matrix[s1][3][6], Matrix[s1][4][1], Matrix[s1][4][2], Matrix[s1][4][3], Matrix[s1][4][4], Matrix[s1][4][5], Matrix[s1][4][6], Matrix[s1][5][1], Matrix[s1][5][2], Matrix[s1][5][3], Matrix[s1][5][4], Matrix[s1][5][5], Matrix[s1][5][6], Matrix[s1][6][1], Matrix[s1][6][2], Matrix[s1][6][3], Matrix[s1][6][4], Matrix[s1][6][5], Matrix[s1][6][6], Matrix[s2][1][1], Matrix[s2][1][2], Matrix[s2][1][3], Matrix[s2][1][4], Matrix[s2][1][5], Matrix[s2][1][6], Matrix[s2][2][1], Matrix[s2][2][2], Matrix[s2][2][3], Matrix[s2][2][4], Matrix[s2][2][5], Matrix[s2][2][6], Matrix[s2][3][1], Matrix[s2][3][2], Matrix[s2][3][3], Matrix[s2][3][4], Matrix[s2][3][5], Matrix[s2][3][6], Matrix[s2][4][1], Matrix[s2][4][2], Matrix[s2][4][3], Matrix[s2][4][4], Matrix[s2][4][5], Matrix[s2][4][6], Matrix[s2][5][1], Matrix[s2][5][2], Matrix[s2][5][3], Matrix[s2][5][4], Matrix[s2][5][5], Matrix[s2][5][6], Matrix[s2][6][1], Matrix[s2][6][2], Matrix[s2][6][3], Matrix[s2][6][4], Matrix[s2][6][5], Matrix[s2][6][6]);
+										}
+									else{//The addition cannot be made
+										printf("\nERROR: The matrices you chose are not of the same dimension so the addition cannot be made.");
+									}
+								}
+							break;
+
+							case 2://Substraction of matrix
+								if(nm<2){
+									printf("\nERROR:You dont have enough matrices created to use this function.");
+								}
+								else{
+									printf("\nEnter the numbers related to the matrices you want to substract separated by a coma.\nMATRICES:\n");
+									for(n=1;n<nm;n++){ShowMatrix(n, Matrix[n][0][0], Matrix[n][0][1], Matrix[n][1][1], Matrix[n][1][2], Matrix[n][1][3], Matrix[n][1][4], Matrix[n][1][5], Matrix[n][1][6], Matrix[n][2][1], Matrix[n][2][2], Matrix[n][2][3], Matrix[n][2][4], Matrix[n][2][5], Matrix[n][2][6], Matrix[n][3][1], Matrix[n][3][2], Matrix[n][3][3], Matrix[n][3][4], Matrix[n][3][5], Matrix[n][3][6], Matrix[n][4][1], Matrix[n][4][2], Matrix[n][4][3], Matrix[n][4][4], Matrix[n][4][5], Matrix[n][4][6], Matrix[n][5][1], Matrix[n][5][2], Matrix[n][5][3], Matrix[n][5][4], Matrix[n][5][5], Matrix[n][5][6], Matrix[n][6][1], Matrix[n][6][2], Matrix[n][6][3], Matrix[n][6][4], Matrix[n][6][5], Matrix[n][6][6]);}
+									scanf("%d,%d", &s1, &s2);
+									if(Matrix[s1][0][0]==Matrix[s2][0][0] && Matrix[s1][0][1]==Matrix[s2][0][1]){//The substraction can be made
+										SubstractMatrix(Matrix[s1][0][0], Matrix[s1][0][1], Matrix[s1][1][1], Matrix[s1][1][2], Matrix[s1][1][3], Matrix[s1][1][4], Matrix[s1][1][5], Matrix[s1][1][6], Matrix[s1][2][1], Matrix[s1][2][2], Matrix[s1][2][3], Matrix[s1][2][4], Matrix[s1][2][5], Matrix[s1][2][6], Matrix[s1][3][1], Matrix[s1][3][2], Matrix[s1][3][3], Matrix[s1][3][4], Matrix[s1][3][5], Matrix[s1][3][6], Matrix[s1][4][1], Matrix[s1][4][2], Matrix[s1][4][3], Matrix[s1][4][4], Matrix[s1][4][5], Matrix[s1][4][6], Matrix[s1][5][1], Matrix[s1][5][2], Matrix[s1][5][3], Matrix[s1][5][4], Matrix[s1][5][5], Matrix[s1][5][6], Matrix[s1][6][1], Matrix[s1][6][2], Matrix[s1][6][3], Matrix[s1][6][4], Matrix[s1][6][5], Matrix[s1][6][6], Matrix[s2][1][1], Matrix[s2][1][2], Matrix[s2][1][3], Matrix[s2][1][4], Matrix[s2][1][5], Matrix[s2][1][6], Matrix[s2][2][1], Matrix[s2][2][2], Matrix[s2][2][3], Matrix[s2][2][4], Matrix[s2][2][5], Matrix[s2][2][6], Matrix[s2][3][1], Matrix[s2][3][2], Matrix[s2][3][3], Matrix[s2][3][4], Matrix[s2][3][5], Matrix[s2][3][6], Matrix[s2][4][1], Matrix[s2][4][2], Matrix[s2][4][3], Matrix[s2][4][4], Matrix[s2][4][5], Matrix[s2][4][6], Matrix[s2][5][1], Matrix[s2][5][2], Matrix[s2][5][3], Matrix[s2][5][4], Matrix[s2][5][5], Matrix[s2][5][6], Matrix[s2][6][1], Matrix[s2][6][2], Matrix[s2][6][3], Matrix[s2][6][4], Matrix[s2][6][5], Matrix[s2][6][6]);
+									}
+									else{//The substraction cannot be made
+										printf("\nERROR: The matrices you chose are not of the same dimension so the substraction cannot be made.");
+									}
+								}
+							break;
+						}
+					}while(o3!=0);
+					break;
+								
+				}
+			       }while(o2!=0);
+				break;
 		}
 	}while(o!=0);
+	
 
 
 
@@ -410,6 +493,7 @@ int main(){
 void ShowMenu(){
 	printf("\n\nMENU");
 	printf("\nGeometry press 1");
+	printf("\nAlgebra press 2");
 
 	printf("\nExit press 0\n");
 }
@@ -496,6 +580,39 @@ void ShowGeometryFindPlaneMenu(){
 	printf("\nTo find the plane that contains a point and a line press 4");
 		
 	printf("\nTo return to Geometry Finding Menu press 0\n");	
+}
+void ShowAlgebraMenu(){
+	printf("\n\nALGEBRA");
+	printf("\nTo create a matrix press 1");
+	printf("\nTo operate press 2");
+
+	printf("\nTo return to menu press 0");
+}
+void ShowAlgebraCreatingMenu(){
+	printf("\n\nCREATING MATRIX");
+	printf("\nTo create a square matrix press 1");
+	printf("\nTo create an irregular matrix press 2");
+
+	printf("\nTo return to Algebra Menu press 0");
+}
+void ShowAlgebraCreatingSquareMatrixMenu(){
+	printf("\n\nCREATING SQUARE MATRIX MENU");
+	printf("\nTo create a matrix of dimension 2 press 1");
+	printf("\nTo create a matrix of dimension 3 press 2");
+	printf("\nTo create a matrix of dimension 4 press 3");
+	printf("\nTo create a matrix of dimension 5 press 4");
+	printf("\nTo create a matrix of dimension 6 press 5");
+
+	printf("\nTo return to Creating Menu press 0");
+
+}
+void ShowAlgebraOperatingMenu(){
+	printf("\n\nOPERATING MENU");
+	printf("\nTo add press 1");
+	printf("\nTo substract press 2");
+	printf("\nTo multiply press 3");
+
+	printf("\nTo return to Algebra Menu press 0");
 }
 
 
