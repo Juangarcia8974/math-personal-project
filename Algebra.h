@@ -3,9 +3,9 @@
 #ifndef Algebra
 #define Algebra
 
-//THINGS TO DO:
-//1: In the function CreateMatrix();Im not sure if to use the first(do,while) I included to do the same as I did in the geometry (To check if the matrix they create is really the one they are omtending to create) [NEED TO THINK ABOUT IT]//2: Finish the function CalculateDeterminantBiggerThan3();
-//3: In the functions ShowMatrix(); and PrintMatrix(); if any of the elements are negetive, it messes up the presentation so I need to fix that.
+//THINGS TO DO
+//1: In the function CreateMatrix();Im not sure if to use the first(do,while) I included to do the same as I did in the geometry (To check if the matrix they create is really the one they are omtending to create) [NEED TO THINK ABOUT IT]
+//2: In the functions ShowMatrix(); and PrintMatrix(); if any of the elements are negetive, it messes up the presentation so I need to fix that.
 
 
 void CreateSquareMatrix2(float* row, float* column, float* x1, float* y1, float* x2, float* y2);
@@ -63,8 +63,12 @@ void ShowMatrix(int nm, float row, float column, float x1, float y1, float z1, f
 void AddMatrix(float r, float c, float x1a, float y1a, float z1a, float a1a, float b1a, float c1a, float x2a, float y2a, float z2a, float a2a, float b2a, float c2a, float x3a, float y3a, float z3a, float a3a, float b3a, float c3a, float x4a, float y4a, float z4a, float a4a, float b4a, float c4a, float x5a, float y5a, float z5a, float a5a, float b5a, float c5a, float x6a, float y6a, float z6a, float a6a, float b6a, float c6a, float x1b, float y1b, float z1b, float a1b, float b1b, float c1b, float x2b, float y2b, float z2b, float a2b, float b2b, float c2b, float x3b, float y3b, float z3b, float a3b, float b3b, float c3b, float x4b, float y4b, float z4b, float a4b, float b4b, float c4b, float x5b, float y5b, float z5b, float a5b, float b5b, float c5b, float x6b, float y6b, float z6b, float a6b, float b6b, float c6b);
 void SubstractMatrix(float r, float c, float x1a, float y1a, float z1a, float a1a, float b1a, float c1a, float x2a, float y2a, float z2a, float a2a, float b2a, float c2a, float x3a, float y3a, float z3a, float a3a, float b3a, float c3a, float x4a, float y4a, float z4a, float a4a, float b4a, float c4a, float x5a, float y5a, float z5a, float a5a, float b5a, float c5a, float x6a, float y6a, float z6a, float a6a, float b6a, float c6a, float x1b, float y1b, float z1b, float a1b, float b1b, float c1b, float x2b, float y2b, float z2b, float a2b, float b2b, float c2b, float x3b, float y3b, float z3b, float a3b, float b3b, float c3b, float x4b, float y4b, float z4b, float a4b, float b4b, float c4b, float x5b, float y5b, float z5b, float a5b, float b5b, float c5b, float x6b, float y6b, float z6b, float a6b, float b6b, float c6b);
 void MultiplyMatrix(float r1, float col1, float col2, float x1a, float y1a, float z1a, float a1a, float b1a, float c1a, float x2a, float y2a, float z2a, float a2a, float b2a, float c2a, float x3a, float y3a, float z3a, float a3a, float b3a, float c3a, float x4a, float y4a, float z4a, float a4a, float b4a, float c4a, float x5a, float y5a, float z5a, float a5a, float b5a, float c5a, float x6a, float y6a, float z6a, float a6a, float b6a, float c6a, float x1b, float y1b, float z1b, float a1b, float b1b, float c1b, float x2b, float y2b, float z2b, float a2b, float b2b, float c2b, float x3b, float y3b, float z3b, float a3b, float b3b, float c3b, float x4b, float y4b, float z4b, float a4b, float b4b, float c4b, float x5b, float y5b, float z5b, float a5b, float b5b, float c5b, float x6b, float y6b, float z6b, float a6b, float b6b, float c6b);
+void CalculateDeterminant(float dim, float x1, float y1, float z1, float a1, float b1, float c1, float x2, float y2, float z2, float a2, float b2, float c2, float x3, float y3, float z3, float a3, float b3, float c3, float x4, float y4, float z4, float a4, float b4, float c4, float x5, float y5, float z5, float a5, float b5, float c5, float x6, float y6, float z6, float a6, float b6, float c6);
 float CalculateDeterminant2(float x1, float y1, float x2, float y2);
 float CalculateDeterminant3(float x1, float y1, float z1, float x2, float y2, float z2, float x3, float y3, float z3);
+float CalculateDeterminant4(float x1, float y1, float z1, float a1, float x2, float y2, float z2, float a2, float x3, float y3, float z3, float a3, float x4, float y4, float z4, float a4);
+float CalculateDeterminant5(float x1, float y1, float z1, float a1, float b1, float x2, float y2, float z2, float a2, float b2, float x3, float y3, float z3, float a3, float b3, float x4, float y4, float z4, float a4, float b4, float x5, float y5, float z5, float a5, float b5);
+float CalculateDeterminant6(float x1, float y1, float z1, float a1, float b1, float c1, float x2, float y2, float z2, float a2, float b2, float c2, float x3, float y3, float z3, float a3, float b3, float c3, float x4, float y4, float z4, float a4, float b4, float c4, float x5, float y5, float z5, float a5, float b5, float c5, float x6, float y6, float z6, float a6, float b6, float c6);
 void CalculateVectorialProduct(float* i, float* j, float* k, float x1, float y1, float z1, float x2, float y2, float z2);
 
 	//ALGEBRA
@@ -900,6 +904,19 @@ void MultiplyMatrix(float r1, float col1, float col2, float x1a, float y1a, floa
 }
 
 		//DETERMINANTS
+			//Calculate the determinant of any square matrix up to 6 x 6
+void CalculateDeterminant(float dim, float x1, float y1, float z1, float a1, float b1, float c1, float x2, float y2, float z2, float a2, float b2, float c2, float x3, float y3, float z3, float a3, float b3, float c3, float x4, float y4, float z4, float a4, float b4, float c4, float x5, float y5, float z5, float a5, float b5, float c5, float x6, float y6, float z6, float a6, float b6, float c6){
+	float det;
+	int dimension=0+dim;
+	switch(dimension){
+		case 2: det=CalculateDeterminant2(x1, y1, x2, y2);break;
+		case 3: det=CalculateDeterminant3(x1, y1, z1, x2, y2, z2, x3, y3, z3);break;
+		case 4: det=CalculateDeterminant4(x1, y1, z1, a1, x2, y2, z2, a2, x3, y3, z3, a3, x4, y4, z4, a4);break;
+		case 5: det=CalculateDeterminant5(x1, y1, z1, a1, b1, x2, y2, z2, a2, b2, x3, y3, z3, a3, b3, x4, y4, z4, a4, b4, x5, y5, z5, a5, b5);break;
+		case 6: det=CalculateDeterminant6(x1, y1, z1, a1, b1, c1, x2, y2, z2, a2, b2, c2, x3, y3, z3, a3, b3, c3, x4, y4, z4, a4, b4, c4, x5, y5, z5, a5, b5, c5, x6, y6, z6, a6, b6, c6);break; 
+	}
+	printf("\nDeterminant of the matrix is %f", det);
+}
 			//Calculate the 2 x 2 determinant.
 float CalculateDeterminant2(float x1, float y1, float x2, float y2){
 	float det;
@@ -917,81 +934,179 @@ float CalculateDeterminant3(float x1, float y1, float z1, float x2, float y2, fl
 	det=x1*y2*z3+x2*y3*z1+x3*y1*z2-x1*y3*z2-x2*y1*z3-x3*y2*z1; 
 	return det;
 }
-			//Calulate the determinant of a matrix with a dimension bigger than 3 x 3
-float CalculateDeterminantBiggerThan3(float x1, float y1, float z1, float a1, float b1, float c1, float x2, float y2, float z2, float a2, float b2, float c2, float x3, float y3, float z3, float a3, float b3, float c3, float x4, float y4, float z4, float a4, float b4, float c4, float x5, float y5, float z5, float a5, float b5, float c5, float x6, float y6, float z6, float a6, float b6, float c6){
-	float Matrix[7][7];
-	int nc=1;
-	int nr=2;
+			// Calculate the 4 x 4 determinant
+float CalculateDeterminant4(float x1, float y1, float z1, float a1, float x2, float y2, float z2, float a2, float x3, float y3, float z3, float a3, float x4, float y4, float z4, float a4){
 	float det;
+	float acumulator=1;
+	//|x1|y1|z1|a1|
+	//|x2|y2|z2|a2|
+	//|x3|y3|z3|a3|
+	//|x4|y4|z4|a4|
+	//I divide the first row by x1
+	x2=x2/x1;
+	x3=x3/x1;
+	x4=x4/x1;
+	acumulator=acumulator*x1;
+	x1=1;
+	//I end up with this:
+	//|1 |y1|z1|a1|
+	//|x2|y2|z2|a2|
+	//|x3|y3|z3|a3|
+	//|x4|y4|z4|a4|
+	//I substract the rows 2,3 and 4 the row 1 times the value they have on the x coordinate. This way, I will make 0 on the x column.
+	y2=y2-y1*x2;
+	z2=z2-z1*x2;
+	a2=a2-a1*x2;
+	x2=x2-x1*x2;//=0
 
-	Matrix[1][1]=x1;
-	Matrix[1][2]=y1;
-	Matrix[1][3]=z1;
-	Matrix[1][4]=a1;
-	Matrix[1][5]=b1;
-	Matrix[1][6]=c1;
-	Matrix[2][1]=x2;
-	Matrix[2][2]=y2;
-	Matrix[2][3]=z2;
-	Matrix[2][4]=a2;
-	Matrix[2][5]=b2;
-	Matrix[2][6]=c2;
-	Matrix[3][1]=x3;
-	Matrix[3][2]=y3;
-	Matrix[3][3]=z3;
-	Matrix[3][4]=a3;
-	Matrix[3][5]=b3;
-	Matrix[3][6]=c3;
-	Matrix[4][1]=x4;
-	Matrix[4][2]=y4;
-	Matrix[4][3]=z4;
-	Matrix[4][4]=a4;
-	Matrix[4][5]=b4;
-	Matrix[4][6]=c4;
-	Matrix[5][1]=x5;
-	Matrix[5][2]=y5;
-	Matrix[5][3]=z5;
-	Matrix[5][4]=a5;
-	Matrix[5][5]=b5;
-	Matrix[5][6]=c5;
-	Matrix[6][1]=x6;
-	Matrix[6][2]=y6;
-	Matrix[6][3]=z6;
-	Matrix[6][4]=a6;
-	Matrix[6][5]=b6;
-	Matrix[6][6]=c6;
+	y3=y3-y1*x3;
+	z3=z3-z1*x3;
+	a3=a3-a1*x3;
+	x3=x3-x1*x3;//=0
 
-
-	if(Matrix[1][1]!=0){
-		do{
-			nc=1;
-			Matrix[0][0]=Matrix[nr][1];
-			do{
-				//printf("\nWorking in the element (%d,%d) and its %f \n",nr, nc, Matrix[nr][nc]);
-				//printf("The operation is: %f=%f-%f*%f/%f\n", Matrix[nr][nc], Matrix[nr][nc], Matrix[1][nc], Matrix[0][0], Matrix[1][1]);
-				Matrix[nr][nc]=Matrix[nr][nc]-Matrix[1][nc]*Matrix[0][0]/Matrix[1][1];
-				//printf("That element is now %f\n", Matrix[nr][nc]);
-				nc++;
-			}while(nc<7);
-			PrintMatrix(6, 6, Matrix[1][1], Matrix[1][2], Matrix[1][3], Matrix[1][4], Matrix[1][5], Matrix[1][6], Matrix[2][1], Matrix[2][2], Matrix[2][3], Matrix[2][4], Matrix[2][5], Matrix[2][6], Matrix[3][1], Matrix[3][2], Matrix[3][3], Matrix[3][4], Matrix[3][5], Matrix[3][6], Matrix[4][1], Matrix[4][2], Matrix[4][3], Matrix[4][4], Matrix[4][5], Matrix[4][6], Matrix[5][1], Matrix[5][2], Matrix[5][3], Matrix[5][4], Matrix[5][5], Matrix[5][6], Matrix[6][1], Matrix[6][2], Matrix[6][3], Matrix[6][4], Matrix[6][5], Matrix[6][6]);
-			printf("\n");
-			nr++;
-		}while(nr<7);
-		
-
+	y4=y4-y1*x4;
+	z4=z4-z1*x4;
+	a4=a4-a1*x4;
+	x4=x4-x1*x4;//=0
+	//At this point I end up with this: 
+	//|1|y1|z1|a1|
+	//|0|y2|z2|a2|
+	//|0|y3|z3|a3|
+	//|0|y4|z4|a4|
+	det=CalculateDeterminant3(y2, z2, a2, y3, z3, a3, y4, z4, a4);
+	det=det*acumulator;
 	return det;
-		/*for(nr=2;nr<4;nr++){
-			for(nc=1;nc<4;nc++){
-				Matrix[nr][nc]=Matrix[nr][nc]-Matrix[1][nc]*Matrix[nr][1]/Matrix[1][1];
-				PrintMatrix(3, 3, Matrix[1][1], Matrix[1][2], Matrix[1][3], Matrix[1][4], Matrix[1][5], Matrix[1][6], Matrix[2][1], Matrix[2][2], Matrix[2][3], Matrix[2][4], Matrix[2][5], Matrix[2][6], Matrix[3][1], Matrix[3][2], Matrix[3][3], Matrix[3][4], Matrix[3][5], Matrix[3][6], Matrix[4][1], Matrix[4][2], Matrix[4][3], Matrix[4][4], Matrix[4][5], Matrix[4][6], Matrix[5][1], Matrix[5][2], Matrix[5][3], Matrix[5][4], Matrix[5][5], Matrix[5][6], Matrix[6][1], Matrix[6][2], Matrix[6][3], Matrix[6][4], Matrix[6][5], Matrix[6][6]);
-			printf("\n");
-			}
-			printf("\nBBBBBB\n");
-			PrintMatrix(3, 3, Matrix[1][1], Matrix[1][2], Matrix[1][3], Matrix[1][4], Matrix[1][5], Matrix[1][6], Matrix[2][1], Matrix[2][2], Matrix[2][3], Matrix[2][4], Matrix[2][5], Matrix[2][6], Matrix[3][1], Matrix[3][2], Matrix[3][3], Matrix[3][4], Matrix[3][5], Matrix[3][6], Matrix[4][1], Matrix[4][2], Matrix[4][3], Matrix[4][4], Matrix[4][5], Matrix[4][6], Matrix[5][1], Matrix[5][2], Matrix[5][3], Matrix[5][4], Matrix[5][5], Matrix[5][6], Matrix[6][1], Matrix[6][2], Matrix[6][3], Matrix[6][4], Matrix[6][5], Matrix[6][6]);
-			printf("\n");
-		}*/
-	}
 }
+			//Calculate the 5 x 5 determinant 
+float CalculateDeterminant5(float x1, float y1, float z1, float a1, float b1, float x2, float y2, float z2, float a2, float b2, float x3, float y3, float z3, float a3, float b3, float x4, float y4, float z4, float a4, float b4, float x5, float y5, float z5, float a5, float b5){
+	float det;
+	float acumulator=1;
+	//|x1|y1|z1|a1|b1|
+	//|x2|y2|z2|a2|b2|
+	//|x3|y3|z3|a3|b3|
+	//|x4|y4|z4|a4|b4|
+	//|x5|y5|z5|a5|b5|
+	//I divide the first row by x1
+	x2=x2/x1;
+	x3=x3/x1;
+	x4=x4/x1;
+	x5=x5/x1;
+	acumulator=acumulator*x1;
+	x1=1;
+	//I end up with this:
+	//|1 |y1|z1|a1|b1|
+	//|x2|y2|z2|a2|b2|
+	//|x3|y3|z3|a3|b3|
+	//|x4|y4|z4|a4|b4|
+	//|x5|y5|z5|a5|b5|
+	//I substract the rows 2,3 and 4 the row 1 times the value they have on the x coordinate. This way, I will make 0 on the x column.
+
+	y2=y2-y1*x2;
+	z2=z2-z1*x2;
+	a2=a2-a1*x2;
+	b2=b2-b1*x2;
+	x2=x2-x1*x2;//=0
+
+	y3=y3-y1*x3;
+	z3=z3-z1*x3;
+	a3=a3-a1*x3;
+	b3=b3-b1*x3;
+	x3=x3-x1*x3;//=0
+
+	y4=y4-y1*x4;
+	z4=z4-z1*x4;
+	a4=a4-a1*x4;
+	b4=b4-b1*x4;
+	x4=x4-x1*x4;//=0
+
+	y5=y5-y1*x5;
+	z5=z5-z1*x5;
+	a5=a5-a1*x5;
+	b5=b5-b1*x5;
+	x5=x5-x1*x5;//=0
+	//At this point I end up with this:
+	//|1|y1|z1|a1|b1|
+	//|0|y2|z2|a2|b2|
+	//|0|y3|z3|a3|b3|
+	//|0|y4|z4|a4|b4|
+	//|0|y5|z5|a5|b5|
+	det=CalculateDeterminant4(y2, z2, a2, b2, y3, z3, a3, b3, y4, z4, a4, b4, y5, z5, a5, b5);
+	det=det*acumulator;
+	return det;
+}
+			//Calculate the 6 x 6 determinant
+float CalculateDeterminant6(float x1, float y1, float z1, float a1, float b1, float c1, float x2, float y2, float z2, float a2, float b2, float c2, float x3, float y3, float z3, float a3, float b3, float c3, float x4, float y4, float z4, float a4, float b4, float c4, float x5, float y5, float z5, float a5, float b5, float c5, float x6, float y6, float z6, float a6, float b6, float c6){
+	float det;
+	float acumulator=1;
+	//|x1|y1|z1|a1|b1|c1|
+	//|x2|y2|z2|a2|b2|c2|
+	//|x3|y3|z3|a3|b3|c3|
+	//|x4|y4|z4|a4|b4|c4|
+	//|x5|y5|z5|a5|b5|c5|
+	//|x6|y6|z6|a6|b6|c6|
+	//I divide the first row by x1
+	x2=x2/x1;
+	x3=x3/x1;
+	x4=x4/x1;
+	x5=x5/x1;
+	x6=x6/x1;
+	acumulator=acumulator*x1;
+	x1=1;
+	//I end up with this:
+	//|1 |y1|z1|a1|b1|c1|
+	//|x2|y2|z2|a2|b2|c2|
+	//|x3|y3|z3|a3|b3|c3|
+	//|x4|y4|z4|a4|b4|c4|
+	//|x5|y5|z5|a5|b5|c5|
+	//|x6|y6|z6|a6|b6|c6|
+	//I substract the rows 2,3,4 and 5 the row 1 times the value they have on the x coordinate. This way, I will make 0 on the x column.
+
+	y2=y2-y1*x2;
+	z2=z2-z1*x2;
+	a2=a2-a1*x2;
+	b2=b2-b1*x2;
+	c2=c2-c1*x2;
+	x2=x2-x1*x2;//=0
+
+	y3=y3-y1*x3;
+	z3=z3-z1*x3;
+	a3=a3-a1*x3;
+	b3=b3-b1*x3;
+	c3=c3-c1*x3;
+	x3=x3-x1*x3;//=0
+
+	y4=y4-y1*x4;
+	z4=z4-z1*x4;
+	a4=a4-a1*x4;
+	b4=b4-b1*x4;
+	c4=c4-c1*x4;
+	x4=x4-x1*x4;//=0
+
+	y5=y5-y1*x5;
+	z5=z5-z1*x5;
+	a5=a5-a1*x5;
+	b5=b5-b1*x5;
+	c5=c5-c1*x5;
+	x5=x5-x1*x5;//=0
+
+	y6=y6-y1*x6;
+	z6=z6-z1*x6;
+	a6=a6-a1*x6;
+	b6=b6-b1*x6;
+	c6=c6-c1*x6; 
+	x6=x6-x1*x6;//=0
+	//At this point I end up with this:
+	//|1|y1|z1|a1|b1|c1|
+	//|0|y2|z2|a2|b2|c2|
+	//|0|y3|z3|a3|b3|c3|
+	//|0|y4|z4|a4|b4|c4|
+	//|0|y5|z5|a5|b5|c5|
+	//|0|y6|z6|a6|b6|c6|
+	det=CalculateDeterminant5(y2, z2, a2, b2, c2, y3, z3, a3, b3, c3, y4, z4, a4, b4, c4, y5, z5, a5, b5, c5, y6, z6, a6, b6, c6);
+	det=det*acumulator;
+	return det;
+}
+
 			//VectorialProduct
 void CalculateVectorialProduct(float* i, float* j, float* k, float x1, float y1, float z1, float x2, float y2, float z2){
 	//|i |j |k |
@@ -1005,3 +1120,4 @@ void CalculateVectorialProduct(float* i, float* j, float* k, float x1, float y1,
 
 #endif
 //Author:Juan Garcia Lopez
+
