@@ -6,8 +6,6 @@
 
 //THINGS NOT DONE
 //1:[MAYBE GOOD MAYBE BAD] Currently, the function CreatePlane();requires the user to know a point and I think the more suitable thing is to ask for the value of d. [MAYBE GOOD MAYBE BAD]
-//2:Substitute the newly created CalculateDeterminant(); and VectorialProduct(); functions in the places that have been used in the GEOMETRY section.
-//3:Finish the Operating section of Algebra.
 
 
 void ShowMenu();
@@ -22,7 +20,7 @@ void ShowGeometryFindLineMenu();
 void ShowGeometryFindPlaneMenu();
 void ShowAlgebraMenu();
 void ShowAlgebraOperatingMenu();
-
+void ShowAlgebraFindMenu();
 
 int main(){
 	//GEOMETRY
@@ -70,6 +68,44 @@ int main(){
 
 
 	do{
+		float det;
+		float x1=1;
+		float y1=2;
+		float z1=3;
+		float a1=4;
+		float b1=5;
+		float c1=6;
+		float x2=3;
+		float y2=2;
+		float z2=3;
+		float a2=3;
+		float b2=3;
+		float c2=3;
+		float x3=3;
+		float y3=44;
+		float z3=5;
+		float a3=6;
+		float b3=7;
+		float c3=8;
+		float x4=4;
+		float y4=2;
+		float z4=4;
+		float a4=4;
+		float b4=8;
+		float c4=9;
+		float x5=3;
+		float y5=3;
+		float z5=6;
+		float a5=5;
+		float b5=5;
+		float c5=4;
+		float x6=1;
+		float y6=7;
+		float z6=6;
+		float a6=5;
+		float b6=4;
+		float c6=4;
+		//CalculateDeterminant(6, x1, y1, z1, a1, b1, c1, x2, y2, z2, a2, b2, c2, x3, y3, z3, a3, b3, c3, x4, y4, z4, a4, b4, c4, x5, y5, z5, a5, b5, c5, x6, y6, z6, a6, b6, c6);
 		ShowMenu();
 		scanf("%d",&o);
 		switch(o){
@@ -216,7 +252,7 @@ int main(){
 								switch(o3){
 									case 1: do{//Find Point
 											ShowGeometryFindPointMenu();
-											scanf("%d",o4);
+											scanf("%d",&o4);
 											switch(o4){
 												case 1: if(np<2){//Find Midpoint of two Lines
 														printf("\nERROR:You dont have enough points created to use this function");
@@ -236,6 +272,22 @@ int main(){
 														for(n=1;n<np;n++){ShowPoints(n, Points[n][2], Points[n][3], Points[n][4]);}
 														scanf("%d,%d",&s1 ,&s2);
 														FindMirrorPointInRelationWithOtherPoint(Points[s1][2], Points[s1][3], Points[s1][4], Points[s2][2], Points[s2][3], Points[s2][4]);
+													}
+													break;
+												case 3: if(np==1){//Find Mirror point in relation with a line
+														printf("\nERROR: You dont have enough points created to use this function");
+													}
+													else if(nl==1){
+														printf("\nERROR: You dont have enough lines created to use this function");
+													}
+													else{
+														printf("\nEnter the number related to the point you want to calculate the mirror of.\nPOINTS:\n");
+														for(n=1;n<np;n++){ShowPoints(n, Points[n][2], Points[n][3], Points[n][4]);}
+														scanf("%d",&s1);
+														printf("\nNow enter the number related to the line you want to use to calculate the mirror point of.\nLINES:\n");
+														for(n=1;n<nl;n++){ShowLines(n, Lines[n][1], Lines[n][2], Lines[n][3], Lines[n][4], Lines[n][5], Lines[n][6]);}
+														scanf("%d",&s2);
+														FindMirrorPointInRelationWithLine(Points[s1][2], Points[s1][3], Points[s1][4], Lines[s2][1], Lines[s2][2], Lines[s2][3], Lines[s2][4], Lines[s2][5], Lines[s2][6]);
 													}
 													break;
 											}
@@ -369,6 +421,16 @@ int main(){
 														FindPlaneContainingPointAndLine(Points[s1][2], Points[s1][3], Points[s1][4], Lines[s2][1], Lines[s2][2], Lines[s2][3], Lines[s2][4], Lines[s2][5], Lines[s2][6]);
 													}
 													break;
+												case 5: if(nl<2){//Find a plane that contains a line and is parallel to another one
+														printf("\nERROR:You dont have enough lines crated to use this function.");
+													}
+													else{
+														printf("\nEnter the numbers related to the lines you want to use to find the plane separated by a coma being one contained in the plane first.\nLINES:\n");
+														for(n=1;n<nl;n++){ShowLines(n, Lines[n][1], Lines[n][2], Lines[n][3], Lines[n][4], Lines[n][5], Lines[n][6]);}
+														scanf("%d,%d",&s1 ,&s2);
+														FindPlaneContainingOneLineAndParallelToAnotherLine(Lines[s1][1], Lines[s1][2], Lines[s1][3], Lines[s1][4], Lines[s1][5], Lines[s1][6], Lines[s2][1], Lines[s2][2], Lines[s2][3], Lines[s2][4], Lines[s2][5], Lines[s2][6]);
+													}
+													break;
 											}
 										}while(o4!=0);
 										break;
@@ -448,7 +510,7 @@ int main(){
 								}
 							break;
 						}
-					}while(o3!=0);
+						}while(o3!=0);
 					break;
 
 					case 4: //EDITING MATRIX
@@ -456,6 +518,30 @@ int main(){
 						for(n=1;n<nm;n++){ShowMatrix(n, Matrix[n][0][0], Matrix[n][0][1], Matrix[n][1][1], Matrix[n][1][2], Matrix[n][1][3], Matrix[n][1][4], Matrix[n][1][5], Matrix[n][1][6], Matrix[n][2][1], Matrix[n][2][2], Matrix[n][2][3], Matrix[n][2][4], Matrix[n][2][5], Matrix[n][2][6], Matrix[n][3][1], Matrix[n][3][2], Matrix[n][3][3], Matrix[n][3][4], Matrix[n][3][5], Matrix[n][3][6], Matrix[n][4][1], Matrix[n][4][2], Matrix[n][4][3], Matrix[n][4][4], Matrix[n][4][5], Matrix[n][4][6], Matrix[n][5][1], Matrix[n][5][2], Matrix[n][5][3], Matrix[n][5][4], Matrix[n][5][5], Matrix[n][5][6], Matrix[n][6][1], Matrix[n][6][2], Matrix[n][6][3], Matrix[n][6][4], Matrix[n][6][5], Matrix[n][6][6]);}
 						scanf("%d",n);
 						CreateMatrix(&Matrix[n][0][0], &Matrix[n][0][1], &Matrix[n][1][1], &Matrix[n][1][2], &Matrix[n][1][3], &Matrix[n][1][4], &Matrix[n][1][5], &Matrix[n][1][6], &Matrix[n][2][1], &Matrix[n][2][2], &Matrix[n][2][3], &Matrix[n][2][4], &Matrix[n][2][5], &Matrix[n][2][6], &Matrix[n][3][1], &Matrix[n][3][2], &Matrix[n][3][3], &Matrix[n][3][4], &Matrix[n][3][5], &Matrix[n][3][6], &Matrix[n][4][1], &Matrix[n][4][2], &Matrix[n][4][3], &Matrix[n][4][4], &Matrix[n][4][5], &Matrix[n][4][6], &Matrix[n][5][1], &Matrix[n][5][2], &Matrix[n][5][3], &Matrix[n][5][4], &Matrix[n][5][5], &Matrix[n][5][6], &Matrix[n][6][1], &Matrix[n][6][2], &Matrix[n][6][3], &Matrix[n][6][4], &Matrix[n][6][5], &Matrix[n][6][6]);
+					break;
+					
+					case 5: do{//FIND/CALCULATE SOMETHING ABOUT A MATRIX
+							ShowAlgebraFindMenu();
+							scanf("%d",&o3);
+							switch(o3){
+								case 1: if(nm<1){//Determinant
+										printf("\nERROR: You dont have enough matrices created to use this function.");
+									}
+									else{
+										printf("\nEnter the number related to the matrix you want to calculate the determinant of.\nMATRICES:\n");
+										for(n=1;n<nm;n++){ShowMatrix(n, Matrix[n][0][0], Matrix[n][0][1], Matrix[n][1][1], Matrix[n][1][2], Matrix[n][1][3], Matrix[n][1][4], Matrix[n][1][5], Matrix[n][1][6], Matrix[n][2][1], Matrix[n][2][2], Matrix[n][2][3], Matrix[n][2][4], Matrix[n][2][5], Matrix[n][2][6], Matrix[n][3][1], Matrix[n][3][2], Matrix[n][3][3], Matrix[n][3][4], Matrix[n][3][5], Matrix[n][3][6], Matrix[n][4][1], Matrix[n][4][2], Matrix[n][4][3], Matrix[n][4][4], Matrix[n][4][5], Matrix[n][4][6], Matrix[n][5][1], Matrix[n][5][2], Matrix[n][5][3], Matrix[n][5][4], Matrix[n][5][5], Matrix[n][5][6], Matrix[n][6][1], Matrix[n][6][2], Matrix[n][6][3], Matrix[n][6][4], Matrix[n][6][5], Matrix[n][6][6]);}
+										scanf("%d",&s1);
+										if(Matrix[s1][0][0]!=Matrix[s1][0][1]){//Determinant cannot be calculated because its not a square matrix.
+											printf("\nERROR: The selected matrix is not a square matrix. This means that the determinant doesnt exist.");
+										}
+										else{//It can be done
+											CalculateDeterminant(Matrix[s1][0][0], Matrix[s1][1][1], Matrix[s1][1][2], Matrix[s1][1][3], Matrix[s1][1][4], Matrix[s1][1][5], Matrix[s1][1][6], Matrix[s1][2][1], Matrix[s1][2][2], Matrix[s1][2][3], Matrix[s1][2][4], Matrix[s1][2][5], Matrix[s1][2][6], Matrix[s1][3][1], Matrix[s1][3][2], Matrix[s1][3][3], Matrix[s1][3][4], Matrix[s1][3][5], Matrix[s1][3][6], Matrix[s1][4][1], Matrix[s1][4][2], Matrix[s1][4][3], Matrix[s1][4][4], Matrix[s1][4][5], Matrix[s1][4][6], Matrix[s1][5][1], Matrix[s1][5][2], Matrix[s1][5][3], Matrix[s1][5][4], Matrix[s1][5][5], Matrix[s1][5][6], Matrix[s1][6][1], Matrix[s1][6][2], Matrix[s1][6][3], Matrix[s1][6][4], Matrix[s1][6][5], Matrix[s1][6][6]);
+										}
+									}
+								break;
+							}
+						}while(o3!=0);
+						
 					break;
 				}
 			       }while(o2!=0);
@@ -565,6 +651,7 @@ void ShowGeometryFindPointMenu(){
 	printf("\n\nFINDING POINT");
 	printf("\nTo find the midpoint of two other points press 1");
 	printf("\nTo find a mirror point in relation to another point press 2");
+	printf("\nTo find a mirror point in relation to a line press 3");
 	
 	printf("\nTo return to Geometry Finding Menu press 0\n");
 }
@@ -593,8 +680,9 @@ void ShowAlgebraMenu(){
 	printf("\nTo see what you have press 2");
 	printf("\nTo operate press 3");
 	printf("\nTo edit press 4");
+	printf("\nTo find/calculate something about a matrix press 5");
 
-	printf("\nTo return to menu press 0");
+	printf("\nTo return to menu press 0\n");
 }
 void ShowAlgebraOperatingMenu(){
 	printf("\n\nOPERATING MENU");
@@ -602,7 +690,13 @@ void ShowAlgebraOperatingMenu(){
 	printf("\nTo substract press 2");
 	printf("\nTo multiply press 3");
 
-	printf("\nTo return to Algebra Menu press 0");
+	printf("\nTo return to Algebra Menu press 0\n");
+}
+void ShowAlgebraFindMenu(){
+	printf("\n\nFINDING MENU");
+	printf("\nTo find the determinant of a matrix you have created press 1");
+
+	printf("\nTo return to Algebra Menu press 0\n");
 }
 
 
