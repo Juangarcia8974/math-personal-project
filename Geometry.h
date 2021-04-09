@@ -4,6 +4,7 @@
 #ifndef Geometry
 #define Geometry
 
+//THIGS TO DO:
 
 
 void CreatePoint(float* num_coor, float* coor1, float* coor2, float* coor3);
@@ -14,6 +15,7 @@ void ComparePointandLine(float x, float y, float z, float xp, float yp, float zp
 void ComparePointandPlane(float xp, float yp, float zp, float xn, float yn, float zn, float d);
 void FindMidpointofTwoPoints(float x1, float y1, float z1, float x2, float y2, float z2);
 void FindMirrorPointInRelationWithOtherPoint(float x1, float y1, float z1, float xm, float ym, float zm);
+void FindMirrorPointInRelationWithLine(float xp, float yp, float zp, float xp1, float yp1, float zp1, float xv1, float yv1, float zv1);
 void CreateVector(float* num_coor, float* coor1, float* coor2, float* coor3);
 void CompareTwoVectors(float x1, float y1, float z1, float x2, float y2, float z2);
 void ShowVectors(int n, float x, float y, float z);
@@ -34,6 +36,7 @@ void FindPlaneThatContainsTwoLines(float xp1, float yp1, float zp1, float xv1, f
 void FindPlaneParalleltoAnotherPlaneandContainsPoint(float xp, float yp, float zp, float xn, float yn, float zn, float d1);
 void FindPlaneContainingThreePoints(float x1, float y1, float z1, float x2, float y2, float z2, float x3, float y3, float z3);
 void FindPlaneContainingPointAndLine(float x, float y, float z, float xp, float yp, float zp, float xv1, float yv1, float zv1);
+void FindPlaneContainingOneLineAndParallelToAnotherLine(float xp1, float yp1, float zp1, float xv1, float yv1, float zv1, float xp2, float yp2, float zp2, float xv2, float yv2, float zv2);
 
 
 
@@ -225,6 +228,45 @@ void FindMirrorPointInRelationWithOtherPoint(float x1, float y1, float z1, float
 	z=2*zm-z1;
 	printf("\nThe mirror point of (%f,%f,%f) in relation to the point (%f,%f,%f) is the point (%f,%f,%f)", x1, y1, z1, xm, ym, zm, x, y, z);
 	printf("\nThis is another way of saying that (%f,%f,%f) is the midpoint of (%f,%f,%f) and (%f,%f,%f)", xm, ym, zm, x1, y1, z1, x, y, z);
+}
+			//Find Mirror Point in relation with line
+void FindMirrorPointInRelationWithLine(float xp, float yp, float zp, float xp1, float yp1, float zp1, float xv1, float yv1, float zv1){
+	//Coordinates of midpoint
+	float s;
+	float xm;
+	float ym;
+	float zm;
+	//Coordinates of points we want to calculate
+	float x;
+	float y;
+	float z;
+	//Plane that is perpendicular to line and that contains the point.
+	float xn;
+	float yn;
+	float zn;
+	float d;
+	s==(xp-xp1)/xv1;
+	if(((xp-xp1)/xv1)==((yp-yp1)/yv1) && ((xp-xp1)/xv1)==((zp-zp1)/zv1)){//Point is part of the line
+		printf("\nERROR: The point is part of the line wich means that it has no mirror point.");
+	}
+	else{
+		xn=xv1;
+		yn=yv1;
+		zn=zv1;
+		d=-xn*xp-yn*yp-zn*zp;
+		//We find the intersection point between the line and the plane
+		//We substitute the parametric equations of the line in the plane equation to figure out the value of s
+		//We are left with this===>xn*(xp1+xv1*s)+yn*(yp1-yv1*s)+zn*(zp1+zv1*s)+d=0===>xn*xp1+xn*xv1*s+yn*yp1+yn*yv1*s+zn*zp1+zn*zv1*s+d=0
+		//xn*xv1*s+yn*yv1*s+zn*zv1*s+d=-xn*xp1-yn*yp1-zn*zp1===>s*(xn*xv1+yn*yv1+zn*zv1)=-xn*xp1-yn*yp1-zn*zp1-d===>
+		s=(-xn*xp1-yn*yp1-zn*zp1-d)/(xn*xv1+yn*yv1+zn*zv1);
+		xm=xp1+xv1*s;
+		ym=xp1+xv1*s;
+		zm=xp1+xv1*s;
+		x=2*xm-xp;
+		y=2*ym-yp;
+		z=2*zm-zp;
+		printf("\nThe mirror point of (%f,%f,%f) in relation to the line (x,y,z)=(%f,%f,%f)+(alpha)*(%f,%f,%f) is the point (%f,%f,%f)", xp, yp, zp, xp1, yp1, zp1, xv1, yv1, zv1, x, y, z);
+	}
 }
 
 		//VECTORS
@@ -790,6 +832,21 @@ void FindPlaneContainingPointAndLine(float x, float y, float z, float xp, float 
 		d=-(xn*x+yn*y+zn*z);
 		printf("\nPlane: ");PrintPlane(xn, yn, zn, d);
 
+	}
+}
+			//Find Plane that contains one line and is parallel to another line
+void FindPlaneContainingOneLineAndParallelToAnotherLine(float xp1, float yp1, float zp1, float xv1, float yv1, float zv1, float xp2, float yp2, float zp2, float xv2, float yv2, float zv2){
+	float xn;
+	float yn;
+	float zn;
+	float d;
+	if(xv1/xv2==yv1/yv2 && yv1/yv2==zv1/zv2 && (xp1-xp2)/xv2==(yp1-yp2)/yv2 && (yp1-yp2)/yv2==(zp1-zp2)/zv2){//Its the same line
+		printf("\nERROR: The two lines that have been introduced are the same line expressed with a different equation.");
+	}
+	else{
+		CalculateVectorialProduct(&xn, &yn, &zn, xv1, yv1, zv1, xv2, yv2, zv2);
+		d=-(xn*xp1+yn*yp1+zn*zp1);
+		printf("\nThe plane that contains the line (x,y,z)=(%f,%f,%f)+(alpha)*(%f,%f,%f) and is parallel to the line (x,y,z)=(x,y,z)=(%f,%f,%f)+(alpha)*(%f,%f,%f) is the plane: ", xp1, yp1, zp1, xv1, yv1, zv1, xp2, yp2, zp2, xv2, yv2, zv2);PrintPlane(xn, yn, zn, d);
 	}
 }
 
